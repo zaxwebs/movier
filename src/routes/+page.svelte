@@ -1,6 +1,5 @@
 <script>
 	import Button from '../lib/components/Button.svelte'
-	import Checkbox from '../lib/components/Checkbox.svelte'
 
 	const types = ['Movie', 'TV Show']
 	let selectedTypes = ['Movie']
@@ -28,6 +27,11 @@
 		'Biography',
 	]
 	let selectedCatagories = []
+
+	const fetchList = async () => {
+		const response = await fetch('api/recommend')
+		console.log(response)
+	}
 </script>
 
 <div>
@@ -44,7 +48,7 @@
 	</div>
 	<div>
 		<div>Genres</div>
-		<div>
+		<div class="flex flex-wrap gap-4">
 			{#each categories as category}
 				<label>
 					<input type="checkbox" bind:group={selectedCatagories} value={category} />
@@ -56,8 +60,8 @@
 	<div>
 		<div>Any specifications?</div>
 		<div>
-			<textarea />
+			<textarea class="border" />
 		</div>
 	</div>
-	<Button>Get Started</Button>
+	<button on:click={fetchList}>Get Started</button>
 </div>
