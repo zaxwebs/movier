@@ -1,4 +1,5 @@
 import { SECRET_API_KEY } from '$env/static/private'
+import { fetch } from 'undici'
 
 
 export const GET = async () => {
@@ -15,7 +16,7 @@ export const GET = async () => {
 			messages: [
 				{
 					role: 'user',
-					content: 'hi'
+					content: 'list 10 movies'
 				}
 			]
 		}
@@ -23,13 +24,12 @@ export const GET = async () => {
 
 	try {
 		const response = await fetch(url, options);
-		const result = await response.text();
-		console.log(result);
+		const result = await response.json();
+		console.log(result)
+		return new Response(result);
 	} catch (error) {
 		console.error(error);
 	}
 
-	console.log(result)
 
-	return new Response(result);
 }
