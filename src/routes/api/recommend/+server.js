@@ -14,5 +14,5 @@ export const GET = async () => {
 		max_tokens: 200,
 	});
 	console.log(response.data.choices);
-	return new Response(response.data.choices);
+	return new Response(response.data.choices[0].text);
 }

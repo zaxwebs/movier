@@ -30,7 +30,8 @@
 
 	const fetchList = async () => {
 		const response = await fetch('api/recommend')
-		console.log(response)
+		const data = await response.text()
+		console.log(data)
 	}
 </script>
 
