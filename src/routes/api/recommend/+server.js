@@ -1,35 +1,18 @@
 import { SECRET_API_KEY } from '$env/static/private'
-import { fetch } from 'undici'
+import { Configuration, OpenAIApi } from "openai";
 
 
 export const GET = async () => {
-	const url = 'https://openai80.p.rapidapi.com/chat/completions';
-	const options = {
-		method: 'POST',
-		headers: {
-			'content-type': 'application/json',
-			'X-RapidAPI-Key': SECRET_API_KEY,
-			'X-RapidAPI-Host': 'openai80.p.rapidapi.com'
-		},
-		body: {
-			model: 'gpt-3.5-turbo',
-			messages: [
-				{
-					role: 'user',
-					content: 'list 10 movies'
-				}
-			]
-		}
-	};
-
-	try {
-		const response = await fetch(url, options);
-		const result = await response.json();
-		console.log(result)
-		return new Response(result);
-	} catch (error) {
-		console.error(error);
-	}
-
-
+	const configuration = new Configuration({
+		apiKey: SECRET_API_KEY,
+	});
+	const openai = new OpenAIApi(configuration);
+	const response = await openai.createCompletion({
+		model: "text-davinci-003",
+		prompt: "top 10 movie shows like the big bang theory are: \n\n",
+		temperature: 0,
+		max_tokens: 200,
+	});
+	console.log(response.data.choices);
+	return new Response(response.data.choices);
 }
