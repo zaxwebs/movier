@@ -2,6 +2,6 @@
 	import '../app.postcss'
 </script>
 
-<div class="max-w-4xl mx-auto">
+<div class="max-w-3xl mx-auto">
 	<slot />
 </div>

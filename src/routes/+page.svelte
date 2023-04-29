@@ -1,6 +1,7 @@
 <script>
 	import { extractNumberedList } from '$lib/utils/helpers'
-	import { Checkbox, Textarea, Label, Button } from 'flowbite-svelte'
+	import { Checkbox, Textarea, Label, Button, Alert, Spinner } from 'flowbite-svelte'
+	import MovieCard from '$lib/components/MovieCard.svelte'
 
 	const types = ['Movie', 'TV Show']
 	let selectedTypes = ['Movie']
@@ -20,12 +21,8 @@
 		'Mystery',
 		'Documentary',
 		'Family',
-		'War',
-		'Musical',
-		'Western',
 		'History',
 		'Sport',
-		'Biography',
 	]
 	let selectedCategories = []
 
@@ -65,7 +62,7 @@
 </script>
 
 <section class="p-4">
-	<div class="mb-4">
+	<div class="mb-6">
 		<div class="mb-6">
 			<Label class="mb-2">Types</Label>
 			<div class="flex flex-wrap gap-4">
@@ -76,7 +73,7 @@
 		</div>
 		<div class="mb-6">
 			<Label class="mb-2">Genres</Label>
-			<div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
+			<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
 				{#each categories as category}
 					<Checkbox bind:group={selectedCategories} value={category}>{category}</Checkbox>
 				{/each}
@@ -95,10 +92,34 @@
 	</div>
 	<div>
 		{#if isLoading}
-			Loading...
+			<div
+				class="flex flex-col items-center bg-white border border-gray-200 rounded-lg md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 overflow-hidden"
+			>
+				<img
+					class="object-cover w-full h-44 md:w-48"
+					src="https://media0.giphy.com/media/CLCT8BXR1T2oyBYilM/giphy.gif?cid=ecf05e476mc7wshubrm0ogph6oid99x6joh8r17bbhm9a6g5&ep=v1_gifs_related&rid=giphy.gif&ct=g"
+					alt="Jimmy Fallon waiting GIF"
+				/>
+				<div class="flex flex-col justify-between p-4 leading-normal">
+					<h5
+						class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+					>
+						The AI cinema gods are <span class="underline">loading</span> your recommendations.
+					</h5>
+					<p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+						Hope you have the popcorn ready. Your recommendations are coming right up!
+					</p>
+				</div>
+			</div>
 		{/if}
-		{#each recommendations as recommendation}
-			<div>{recommendation}</div>
-		{/each}
+		{#if recommendations.length}
+			<div>
+				{#each recommendations as recommendation}
+					<div class="mb-6">
+						<MovieCard class="mb-6" name={recommendation} />
+					</div>
+				{/each}
+			</div>
+		{/if}
 	</div>
 </section>
