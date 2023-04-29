@@ -1,5 +1,4 @@
 <script>
-	import { extractNumberedList } from '$lib/utils/helpers'
 	import { Checkbox, Textarea, Label, Button, Alert, Spinner } from 'flowbite-svelte'
 	import MovieCard from '$lib/components/MovieCard.svelte'
 
@@ -50,11 +49,10 @@
 				},
 				body: JSON.stringify(data),
 			})
-			const output = await response.text()
-			console.log(extractNumberedList(output))
-
+			const json = await response.json()
+			console.log(json)
 			isLoading = false
-			recommendations = extractNumberedList(output)
+			recommendations = [...json.list]
 		} catch (error) {
 			console.log(error)
 		}
@@ -116,7 +114,7 @@
 			<div>
 				{#each recommendations as recommendation}
 					<div class="mb-6">
-						<MovieCard class="mb-6" name={recommendation} />
+						<MovieCard class="mb-6" name={recommendation.name} />
 					</div>
 				{/each}
 			</div>

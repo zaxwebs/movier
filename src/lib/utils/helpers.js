@@ -1,4 +1,4 @@
-export const extractNumberedList = (text) => {
+export const extractList = (text) => {
 	const regex = /^\d+\.\s(.*)$/gm
 	const listItems = []
 	let match
