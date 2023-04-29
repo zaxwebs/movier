@@ -26,14 +26,14 @@
 		"Sport",
 		"Biography",
 	]
-	let selectedCatagories = []
+	let selectedCategories = []
 
 	let specifications
 
 	const fetchList = async () => {
 		const data = {
 			selectedTypes,
-			selectedCatagories,
+			selectedCategories,
 			specifications,
 		}
 
@@ -76,7 +76,7 @@
 				<label>
 					<input
 						type="checkbox"
-						bind:group={selectedCatagories}
+						bind:group={selectedCategories}
 						value={category}
 					/>
 					{category}
