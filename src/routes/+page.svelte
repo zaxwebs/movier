@@ -1,5 +1,6 @@
 <script>
 	import Button from "../lib/components/Button.svelte"
+	import { extractNumberedList } from "$lib/utils/helpers"
 
 	const types = ["Movie", "TV Show"]
 	let selectedTypes = ["Movie"]
@@ -45,8 +46,8 @@
 				},
 				body: JSON.stringify(data),
 			})
-			const json = await response.json()
-			console.log(json)
+			const output = await response.text()
+			console.log(extractNumberedList(output))
 		} catch (error) {
 			console.log(error)
 		}

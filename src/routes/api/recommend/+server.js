@@ -35,7 +35,5 @@ export const POST = async ({ request }) => {
 		model: "gpt-3.5-turbo",
 		messages: [{ role: "user", content: prompt }],
 	})
-	return new Response(
-		JSON.stringify(response.data.choices[0].message.content)
-	)
+	return new Response(response.data.choices[0].message.content)
 }
