@@ -1,31 +1,31 @@
 <script>
-	import Button from "../lib/components/Button.svelte"
-	import { extractNumberedList } from "$lib/utils/helpers"
+	import { extractNumberedList } from '$lib/utils/helpers'
+	import { Checkbox, Textarea, Label, Button } from 'flowbite-svelte'
 
-	const types = ["Movie", "TV Show"]
-	let selectedTypes = ["Movie"]
+	const types = ['Movie', 'TV Show']
+	let selectedTypes = ['Movie']
 
 	const categories = [
-		"Action",
-		"Comedy",
-		"Drama",
-		"Horror",
-		"Romance",
-		"Adventure",
-		"Sci-Fi",
-		"Thriller",
-		"Crime",
-		"Animation",
-		"Fantasy",
-		"Mystery",
-		"Documentary",
-		"Family",
-		"War",
-		"Musical",
-		"Western",
-		"History",
-		"Sport",
-		"Biography",
+		'Action',
+		'Comedy',
+		'Drama',
+		'Horror',
+		'Romance',
+		'Adventure',
+		'Sci-Fi',
+		'Thriller',
+		'Crime',
+		'Animation',
+		'Fantasy',
+		'Mystery',
+		'Documentary',
+		'Family',
+		'War',
+		'Musical',
+		'Western',
+		'History',
+		'Sport',
+		'Biography',
 	]
 	let selectedCategories = []
 
@@ -46,10 +46,10 @@
 		}
 
 		try {
-			const response = await fetch("/api/recommend", {
-				method: "POST",
+			const response = await fetch('/api/recommend', {
+				method: 'POST',
 				headers: {
-					"Content-Type": "application/json",
+					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify(data),
 			})
@@ -65,43 +65,32 @@
 </script>
 
 <div class="mb-4">
-	<div>
-		<div>Types</div>
-		<div>
+	<div class="mb-3">
+		<Label class="mb-2">Types</Label>
+		<div class="flex flex-wrap gap-4">
 			{#each types as type}
-				<label>
-					<input
-						type="checkbox"
-						bind:group={selectedTypes}
-						value={type}
-					/>
-					{type}
-				</label>
+				<Checkbox bind:group={selectedTypes} value={type}>{type}</Checkbox>
 			{/each}
 		</div>
 	</div>
-	<div>
-		<div>Genres</div>
+	<div class="mb-3">
+		<Label class="mb-2">Genres</Label>
 		<div class="flex flex-wrap gap-4">
 			{#each categories as category}
-				<label>
-					<input
-						type="checkbox"
-						bind:group={selectedCategories}
-						value={category}
-					/>
-					{category}
-				</label>
+				<Checkbox bind:group={selectedCategories} value={category}>{category}</Checkbox>
 			{/each}
 		</div>
 	</div>
-	<div>
-		<div>Any specifications?</div>
-		<div>
-			<textarea bind:value={specifications} class="border" />
-		</div>
+	<div class="mb-3">
+		<Label for="specifications" class="mb-2">Any specifications?</Label>
+		<Textarea
+			id="specifications"
+			placeholder="Your message"
+			rows="3"
+			bind:value={specifications}
+		/>
 	</div>
-	<button on:click={fetchList}>Get Started</button>
+	<Button on:click={fetchList}>Get Recommendations</Button>
 </div>
 <div>
 	{#if isLoading}
