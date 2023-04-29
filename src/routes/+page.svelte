@@ -31,6 +31,8 @@
 
 	let specifications
 
+	let recommendations = []
+
 	const fetchList = async () => {
 		const data = {
 			selectedTypes,
@@ -48,6 +50,7 @@
 			})
 			const output = await response.text()
 			console.log(extractNumberedList(output))
+			recommendations = extractNumberedList(output)
 		} catch (error) {
 			console.log(error)
 		}
@@ -92,4 +95,9 @@
 		</div>
 	</div>
 	<button on:click={fetchList}>Get Started</button>
+</div>
+<div>
+	{#each recommendations as recommendation}
+		<div>{recommendation}</div>
+	{/each}
 </div>
