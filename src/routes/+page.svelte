@@ -64,39 +64,41 @@
 	}
 </script>
 
-<div class="mb-4">
-	<div class="mb-3">
-		<Label class="mb-2">Types</Label>
-		<div class="flex flex-wrap gap-4">
-			{#each types as type}
-				<Checkbox bind:group={selectedTypes} value={type}>{type}</Checkbox>
-			{/each}
+<section class="p-4">
+	<div class="mb-4">
+		<div class="mb-6">
+			<Label class="mb-2">Types</Label>
+			<div class="flex flex-wrap gap-4">
+				{#each types as type}
+					<Checkbox bind:group={selectedTypes} value={type}>{type}</Checkbox>
+				{/each}
+			</div>
 		</div>
-	</div>
-	<div class="mb-3">
-		<Label class="mb-2">Genres</Label>
-		<div class="flex flex-wrap gap-4">
-			{#each categories as category}
-				<Checkbox bind:group={selectedCategories} value={category}>{category}</Checkbox>
-			{/each}
+		<div class="mb-6">
+			<Label class="mb-2">Genres</Label>
+			<div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
+				{#each categories as category}
+					<Checkbox bind:group={selectedCategories} value={category}>{category}</Checkbox>
+				{/each}
+			</div>
 		</div>
+		<div class="mb-6">
+			<Label for="specifications" class="mb-2">Any specifications?</Label>
+			<Textarea
+				id="specifications"
+				placeholder="E.g. featuring Tom Cruise"
+				rows="3"
+				bind:value={specifications}
+			/>
+		</div>
+		<Button on:click={fetchList}>Get Recommendations</Button>
 	</div>
-	<div class="mb-3">
-		<Label for="specifications" class="mb-2">Any specifications?</Label>
-		<Textarea
-			id="specifications"
-			placeholder="Your message"
-			rows="3"
-			bind:value={specifications}
-		/>
+	<div>
+		{#if isLoading}
+			Loading...
+		{/if}
+		{#each recommendations as recommendation}
+			<div>{recommendation}</div>
+		{/each}
 	</div>
-	<Button on:click={fetchList}>Get Recommendations</Button>
-</div>
-<div>
-	{#if isLoading}
-		Loading...
-	{/if}
-	{#each recommendations as recommendation}
-		<div>{recommendation}</div>
-	{/each}
-</div>
+</section>
