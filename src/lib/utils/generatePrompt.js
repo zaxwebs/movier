@@ -6,10 +6,10 @@ export default function generatePrompt(
 	selectedCategories,
 	specifications
 ) {
-	const types = selectedTypes
+	const types = selectedTypes.length
 		? selectedTypes.join(", ")
 		: DEFAULT_TYPES.join(", ")
-	const categories = selectedCategories
+	const categories = selectedCategories.length
 		? selectedCategories.join(", ")
 		: "any"
 	const specs = specifications
@@ -31,8 +31,8 @@ export default function generatePrompt(
 
     ${fallbackMsg}
 
-    I understand you are an AI and do not have preferences.
-    Please ALWAYS return this response numbered list of titles.
+    Please ONLY return this response numbered list of titles with each having the following format:
+	name, type e.g Sherlock, TV Show.
   `
 
 	return prompt
