@@ -28,10 +28,28 @@
 	]
 	let selectedCatagories = []
 
+	let specifications
+
 	const fetchList = async () => {
-		const response = await fetch('api/recommend')
-		const data = await response.text()
-		console.log(data)
+		const data = {
+			selectedTypes,
+			selectedCatagories,
+			specifications,
+		}
+
+		try {
+			const response = await fetch('/api/recommend', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			})
+			const json = await response.json()
+			console.log(json)
+		} catch (error) {
+			console.log(error)
+		}
 	}
 </script>
 
@@ -61,7 +79,7 @@
 	<div>
 		<div>Any specifications?</div>
 		<div>
-			<textarea class="border" />
+			<textarea bind:value={specifications} class="border" />
 		</div>
 	</div>
 	<button on:click={fetchList}>Get Started</button>
