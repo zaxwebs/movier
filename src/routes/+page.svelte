@@ -33,7 +33,12 @@
 
 	let recommendations = []
 
+	let isLoading = false
+
 	const fetchList = async () => {
+		isLoading = true
+		recommendations = []
+
 		const data = {
 			selectedTypes,
 			selectedCategories,
@@ -50,6 +55,8 @@
 			})
 			const output = await response.text()
 			console.log(extractNumberedList(output))
+
+			isLoading = false
 			recommendations = extractNumberedList(output)
 		} catch (error) {
 			console.log(error)
@@ -57,7 +64,7 @@
 	}
 </script>
 
-<div>
+<div class="mb-4">
 	<div>
 		<div>Types</div>
 		<div>
@@ -97,6 +104,9 @@
 	<button on:click={fetchList}>Get Started</button>
 </div>
 <div>
+	{#if isLoading}
+		Loading...
+	{/if}
 	{#each recommendations as recommendation}
 		<div>{recommendation}</div>
 	{/each}
