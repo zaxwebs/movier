@@ -16,7 +16,7 @@ export default function generatePrompt(
 	type: <${types}>
 	category: <${categories}>
 	specifications: <${specifications}>
-	item format: name | type e.g TV Show | starting_year`
+	item format: name ex. Sherlock | type ex. TV Show | starting_year`
 
 	return prompt
 }
