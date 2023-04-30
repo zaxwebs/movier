@@ -9,7 +9,7 @@
 	let details
 
 	onMount(async () => {
-		const response = await fetch(`api/details?name=${name}`)
+		const response = await fetch(`api/details?name=${name}&year=${year}`)
 		details = await response.json()
 	})
 
@@ -23,7 +23,7 @@
 	<img
 		class="h-40 w-full object-cover md:h-full md:w-48"
 		src={details
-			? `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${details.poster_path}`
+			? `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${details.poster_path}`
 			: 'https://tecdn.b-cdn.net/wp-content/uploads/2020/06/vertical.jpg'}
 		alt="poster"
 	/>

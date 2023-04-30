@@ -23,18 +23,14 @@ export default function generatePrompt(
 
 	const prompt = `
     give me a list of top ${MAX_RESULTS} cinema recommendations that match the following criteria:
-
     type: <${types}>
     category: <${categories}>
-
     ${specs}
-
     ${fallbackMsg}
-
     Please ONLY return this response numbered list of titles with each having the following format:
 	name | type | year e.g Sherlock | TV Show | 2010, Dexter | TV Show | 2006 or The Dark Knight | Movie | 2008.
 
-	Note that year should only have the following format: YYYY.
+	Note that you should only include the starting year.
   `
 
 	return prompt
