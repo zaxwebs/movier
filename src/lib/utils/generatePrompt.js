@@ -32,7 +32,7 @@ export default function generatePrompt(
     ${fallbackMsg}
 
     Please ONLY return this response numbered list of titles with each having the following format:
-	name | type | year e.g Sherlock | TV | 2010, Dexter | TV | 2006 or The Dark Knight | Movie | 2008.
+	name | type | year e.g Sherlock | TV Show | 2010, Dexter | TV Show | 2006 or The Dark Knight | Movie | 2008.
   `
 
 	return prompt

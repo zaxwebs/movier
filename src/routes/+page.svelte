@@ -113,7 +113,11 @@
 			<div>
 				{#each recommendations as recommendation}
 					<div class="mb-6">
-						<RecommendationCard name={recommendation.name} />
+						<RecommendationCard
+							name={recommendation.name}
+							type={recommendation.type}
+							year={recommendation.year}
+						/>
 					</div>
 				{/each}
 			</div>

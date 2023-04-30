@@ -3,6 +3,8 @@
 	import { Rating } from 'flowbite-svelte'
 
 	export let name
+	export let type
+	export let year
 
 	let details
 
@@ -26,7 +28,11 @@
 		alt="poster"
 	/>
 	<div class="flex flex-col justify-start p-6">
-		<h5 class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">{name}</h5>
+		<h5 class="mb-4 text-xl font-medium text-neutral-800 dark:text-neutral-50">{name}</h5>
+		<div class="flex gap-4 text-sm font-medium text-gray-900 dark:text-white mb-4">
+			<div>{type}</div>
+			<div>{year}</div>
+		</div>
 		{#if details}
 			<p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
 				{details.overview}
@@ -34,13 +40,10 @@
 		{/if}
 
 		{#if details}
-			<p class="text-xs text-neutral-500 dark:text-neutral-300 mb-4">
-				Released on {details.release_date}
-			</p>
 			<Rating count rating={convertRating(details.vote_average)}>
 				<span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400" />
 				<span class="text-sm font-medium text-gray-900 dark:text-white"
-					>{details.vote_count} reviews</span
+					>{details.vote_count} ratings</span
 				>
 			</Rating>
 		{/if}

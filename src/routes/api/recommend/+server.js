@@ -31,6 +31,7 @@ export const POST = async ({ request }) => {
 		objects.push({
 			name: splits[0],
 			type: splits[1],
+			year: splits[2],
 		})
 	})
 
