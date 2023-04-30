@@ -3,7 +3,7 @@
 	import MovieCard from '$lib/components/MovieCard.svelte'
 
 	const types = ['Movie', 'TV Show']
-	let selectedTypes = ['Movie']
+	let selectedTypes = ['Movie', 'TV Show']
 
 	const categories = [
 		'Action',
@@ -20,8 +20,6 @@
 		'Mystery',
 		'Documentary',
 		'Family',
-		'History',
-		'Sport',
 	]
 	let selectedCategories = []
 
