@@ -19,15 +19,15 @@
 	}
 </script>
 
-<div class="flex flex-col md:flex-row overflow-hidden rounded border">
+<div class="flex flex-col md:flex-row overflow-hidden rounded border p-4 gap-6">
 	<img
-		class="h-40 w-full object-cover md:h-full md:w-48"
+		class="h-40 w-full object-cover md:h-full md:w-40 flex-1"
 		src={details
 			? `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${details.poster_path}`
 			: 'images/poster.jpg'}
 		alt="poster"
 	/>
-	<div class="flex flex-col justify-start p-6">
+	<div>
 		<h5 class="mb-4 text-xl font-medium text-neutral-800 dark:text-neutral-50">{name}</h5>
 		<div class="flex gap-4 text-sm font-medium text-gray-900 dark:text-white mb-4">
 			<div>{type}</div>
