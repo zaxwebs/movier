@@ -57,10 +57,16 @@
 	}
 </script>
 
-<section class="p-4">
+<header class="p-4 md:p-6">
+	<div class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">FlixAI</div>
+	<p class="font-normal text-gray-700 dark:text-gray-400">
+		Get the perfect movie & series recommendations.
+	</p>
+</header>
+<section class="p-4 md:p-6">
 	<form class="mb-6">
 		<div class="mb-6">
-			<Label for="specifications" class="mb-2">Any specifications?</Label>
+			<Label for="specifications" class="mb-2">What kind of flix are you looking for?</Label>
 			<Textarea
 				id="specifications"
 				placeholder="E.g. featuring Tom Cruise"
