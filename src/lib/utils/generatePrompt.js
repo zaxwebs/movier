@@ -1,37 +1,24 @@
-const DEFAULT_TYPES = ["movie", "tv show"]
+const DEFAULT_TYPES = "movie, tv show"
 const MAX_RESULTS = 5
 
 export default function generatePrompt(
-	selectedTypes,
-	selectedCategories,
-	specifications
+	selectedTypes = [],
+	selectedCategories = [],
+	specifications = "none"
 ) {
 	const types = selectedTypes.length
 		? selectedTypes.join(", ")
-		: DEFAULT_TYPES.join(", ")
+		: DEFAULT_TYPES
 	const categories = selectedCategories.length
 		? selectedCategories.join(", ")
 		: "any"
-	const specs = specifications
-		? `Make sure it fits the following specifications as well: <${specifications}>`
-		: ""
-	let fallbackMsg = ""
+	const prompt = `give me a numbered list of top ${MAX_RESULTS} cinema recommendations that match the following criteria:
+	type: <${types}>
+	category: <${categories}>
+	specifications: <${specifications}>
 
-	if (selectedTypes || specifications) {
-		fallbackMsg = `If you do not have ${MAX_RESULTS} recommendations that fit these criteria perfectly or if there are other reasons, do your best to suggest other cinemas of type: ${types} that I might like.`
-	}
-
-	const prompt = `
-    give me a list of top ${MAX_RESULTS} cinema recommendations that match the following criteria:
-    type: <${types}>
-    category: <${categories}>
-    ${specs}
-    ${fallbackMsg}
-    Please ONLY return this response numbered list of titles with each having the following format:
-	name | type | year e.g Sherlock | TV Show | 2010, Dexter | TV Show | 2006 or The Dark Knight | Movie | 2008.
-
-	Note that you should only include the starting year.
-  `
+	Format of each item should be:
+	name | type | starting_year e.g Sherlock | TV Show | 2010.`
 
 	return prompt
 }
