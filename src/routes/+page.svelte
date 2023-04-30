@@ -58,7 +58,7 @@
 </script>
 
 <section class="p-4">
-	<div class="mb-6">
+	<form class="mb-6">
 		<div class="mb-6">
 			<Label for="specifications" class="mb-2">Any specifications?</Label>
 			<Textarea
@@ -85,12 +85,12 @@
 			</div>
 		</div>
 
-		<Button on:click={fetchList}>Get Recommendations</Button>
-	</div>
+		<Button type="submit" on:click={fetchList}>Get Recommendations</Button>
+	</form>
 	<div>
 		{#if isLoading}
 			<div
-				class="flex flex-col items-center bg-white border border-gray-200 rounded-lg md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 overflow-hidden"
+				class="flex flex-col items-center bg-white border border-gray-200 rounded-lg md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 overflow-hidden"
 			>
 				<img
 					class="object-cover w-full h-44 md:w-48"
