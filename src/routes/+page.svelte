@@ -1,6 +1,6 @@
 <script>
 	import { Checkbox, Textarea, Label, Button, Alert, Spinner } from 'flowbite-svelte'
-	import MovieCard from '$lib/components/MovieCard.svelte'
+	import RecommendationCard from '$lib/components/RecommendationCard.svelte'
 
 	const types = ['Movie', 'TV Show']
 	let selectedTypes = ['Movie', 'TV Show']
@@ -60,6 +60,15 @@
 <section class="p-4">
 	<div class="mb-6">
 		<div class="mb-6">
+			<Label for="specifications" class="mb-2">Any specifications?</Label>
+			<Textarea
+				id="specifications"
+				placeholder="E.g. featuring Tom Cruise"
+				rows="3"
+				bind:value={specifications}
+			/>
+		</div>
+		<div class="mb-6">
 			<Label class="mb-2">Types</Label>
 			<div class="flex flex-wrap gap-4">
 				{#each types as type}
@@ -75,15 +84,7 @@
 				{/each}
 			</div>
 		</div>
-		<div class="mb-6">
-			<Label for="specifications" class="mb-2">Any specifications?</Label>
-			<Textarea
-				id="specifications"
-				placeholder="E.g. featuring Tom Cruise"
-				rows="3"
-				bind:value={specifications}
-			/>
-		</div>
+
 		<Button on:click={fetchList}>Get Recommendations</Button>
 	</div>
 	<div>
@@ -112,7 +113,7 @@
 			<div>
 				{#each recommendations as recommendation}
 					<div class="mb-6">
-						<MovieCard name={recommendation.name} />
+						<RecommendationCard name={recommendation.name} />
 					</div>
 				{/each}
 			</div>
