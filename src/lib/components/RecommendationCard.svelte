@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte'
+	import { Rating } from 'flowbite-svelte'
 
 	export let name
 
@@ -10,14 +11,17 @@
 		details = await response.json()
 	})
 
-	// https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ngl2FKBlU4fhbdsrtdom9LVLBXw.jpg
+	const convertRating = (rating) => {
+		const outOfFive = rating / 2
+		return outOfFive.toFixed(1)
+	}
 </script>
 
-<div class="flex flex-col rounded md:flex-row border">
+<div class="flex flex-col md:flex-row overflow-hidden rounded border">
 	<img
-		class="h-40 w-full rounded-t-lg object-cover md:h-full md:w-48 md:rounded-none md:rounded-l-lg"
+		class="h-40 w-full object-cover md:h-full md:w-48"
 		src={details
-			? `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${details.poster_path}`
+			? `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${details.poster_path}`
 			: 'https://tecdn.b-cdn.net/wp-content/uploads/2020/06/vertical.jpg'}
 		alt="poster"
 	/>
@@ -28,6 +32,17 @@
 				{details.overview}
 			</p>
 		{/if}
-		<p class="text-xs text-neutral-500 dark:text-neutral-300">Last updated 3 mins ago</p>
+
+		{#if details}
+			<p class="text-xs text-neutral-500 dark:text-neutral-300 mb-4">
+				Released on {details.release_date}
+			</p>
+			<Rating count rating={convertRating(details.vote_average)}>
+				<span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400" />
+				<span class="text-sm font-medium text-gray-900 dark:text-white"
+					>{details.vote_count} reviews</span
+				>
+			</Rating>
+		{/if}
 	</div>
 </div>
