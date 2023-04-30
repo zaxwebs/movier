@@ -12,13 +12,11 @@ export default function generatePrompt(
 	const categories = selectedCategories.length
 		? selectedCategories.join(", ")
 		: "any"
-	const prompt = `give me a numbered list of top ${MAX_RESULTS} cinema recommendations that match the following criteria:
+	const prompt = `give me a numbered list of ${MAX_RESULTS} cinema recommendations fulfilling:
 	type: <${types}>
 	category: <${categories}>
 	specifications: <${specifications}>
-
-	Format of each item should be:
-	name | type | starting_year e.g Sherlock | TV Show | 2010.`
+	item format: name | type e.g TV Show | starting_year`
 
 	return prompt
 }
