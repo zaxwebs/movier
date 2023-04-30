@@ -114,7 +114,7 @@
 			<div>
 				{#each recommendations as recommendation}
 					<div class="mb-6">
-						<MovieCard class="mb-6" name={recommendation.name} />
+						<MovieCard name={recommendation.name} />
 					</div>
 				{/each}
 			</div>

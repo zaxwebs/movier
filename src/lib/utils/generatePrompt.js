@@ -32,7 +32,7 @@ export default function generatePrompt(
     ${fallbackMsg}
 
     Please ONLY return this response numbered list of titles with each having the following format:
-	name, type e.g Sherlock, TV Show or Superman, Movie.
+	name | type e.g Sherlock | TV, Sherlock | TV or Superman | Movie.
   `
 
 	return prompt

@@ -1,10 +1,10 @@
-import { SECRET_API_KEY } from "$env/static/private"
+import { OPENAI_API_KEY } from "$env/static/private"
 import { Configuration, OpenAIApi } from "openai"
 import generatePrompt from "$lib/utils/generatePrompt"
 import { extractList } from '$lib/utils/helpers'
 
 const configuration = new Configuration({
-	apiKey: SECRET_API_KEY,
+	apiKey: OPENAI_API_KEY,
 })
 const openai = new OpenAIApi(configuration)
 
@@ -27,7 +27,7 @@ export const POST = async ({ request }) => {
 	const objects = []
 
 	extractedList.forEach(item => {
-		const splits = item.split(", ")
+		const splits = item.split(" | ")
 		objects.push({
 			name: splits[0],
 			type: splits[1],
