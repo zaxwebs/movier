@@ -1,3 +1,5 @@
+import { SEPARATOR } from '$lib/server/config'
+
 const DEFAULT_TYPES = "movie, tv show"
 const MAX_RESULTS = 5
 
@@ -16,7 +18,7 @@ export default function generatePrompt(
 	type: <${types}>
 	category: <${categories}>
 	specifications: <${specifications}>
-	item format: name ex. Sherlock | type ex. TV Show | starting_year`
+	item format: name ex. Sherlock${SEPARATOR}type ex. TV Show${SEPARATOR}starting_year`
 
 	return prompt
 }

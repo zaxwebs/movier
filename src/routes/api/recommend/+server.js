@@ -2,6 +2,7 @@ import { OPENAI_API_KEY } from "$env/static/private"
 import { Configuration, OpenAIApi } from "openai"
 import generatePrompt from "$lib/utils/generatePrompt"
 import { extractList } from '$lib/utils/helpers'
+import { SEPARATOR } from '$lib/server/config'
 
 const configuration = new Configuration({
 	apiKey: OPENAI_API_KEY,
@@ -22,21 +23,20 @@ export const POST = async ({ request }) => {
 		messages: [{ role: "user", content: prompt }],
 	})
 
+	console.log(response.data.usage);
+
 	const content = response.data.choices[0].message.content
 	const extractedList = extractList(content)
 	const objects = []
 
 	extractedList.forEach(item => {
-		const splits = item.split(" | ")
+		const splits = item.split(SEPARATOR)
 		objects.push({
 			name: splits[0],
 			type: splits[1],
 			year: splits[2],
 		})
 	})
-
-
-	console.log(extractedList)
 
 
 	return new Response(JSON.stringify({ list: objects }))
